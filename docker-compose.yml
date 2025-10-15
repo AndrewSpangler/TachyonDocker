@@ -8,10 +8,10 @@ services:
     ports:
       - "30303:30303"
       - "30303:30303/udp"
+    tty: true
+    stdin_open: true
     volumes:
       - ./tachyons:/app/tachyons
       - ./appdata/tachyons:/app/tachyons/server/DataBase
     restart: unless-stopped
-    environment:
-      - JAVA_OPTS=-Xmx2G -Xms1G
     working_dir: /app/tachyons/server
