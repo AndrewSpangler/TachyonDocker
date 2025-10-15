@@ -9,7 +9,7 @@ services:
       - "30303:30303"
       - "30303:30303/udp"
     volumes:
-      - ./appdata/tachyons:/app/tachyons
+      - ./tachyons:/app/tachyons
     restart: unless-stopped
     environment:
       - JAVA_OPTS=-Xmx2G -Xms1G
