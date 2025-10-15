@@ -1,1 +1,17 @@
-
+services:
+  tachyons:
+    build:
+      context: ./tachyons
+      dockerfile: Dockerfile
+    container_name: tachyons
+    hostname: tachyons
+    ports:
+      - "30303:30303"
+      - "30303:30303/udp"
+    volumes:
+      - ./tachyons:/app/tachyons
+      - ./appdata/tachyons:/app/tachyons/server/DataBase
+    restart: unless-stopped
+    environment:
+      - JAVA_OPTS=-Xmx2G -Xms1G
+    working_dir: /app/tachyons/server
