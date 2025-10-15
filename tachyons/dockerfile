@@ -14,6 +14,8 @@ RUN apt-get update && \
 
 EXPOSE 30303
 
+RUN mkdir -p /app/tachyons/server
+
 WORKDIR /app/tachyons/server
 
 RUN echo '#!/bin/bash\n\
