@@ -1,0 +1,26 @@
+FROM eclipse-temurin:17.0.4.1_1-jre
+
+RUN apt-get update && \
+    apt-get install -y \
+    xvfb \
+    libxrender1 \
+    libxtst6 \
+    libxi6 \
+    libxrandr2 \
+    libfreetype6 \
+    libfontconfig1 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+EXPOSE 30303
+
+WORKDIR /app/tachyons/server
+
+RUN echo '#!/bin/bash\n\
+Xvfb :99 -screen 0 1024x768x24 &\n\
+export DISPLAY=:99\n\
+sleep 2\n\
+java -jar TachyonsServer.jar' > /app/start.sh && \
+    chmod +x /app/start.sh
+
+CMD ["/app/start.sh"]
